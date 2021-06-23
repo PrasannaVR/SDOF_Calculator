@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SDOF CALCULATOR</title>
+</head>
+<br>
+<body>
+<h1 align=center>SDOF CALCULATOR</h1>
+<h2 align=center>Input Parameters</h2>
+<form action="{{ url_for('predict')}}" method="post">
+<div style="color:blue">
+<table border=1 align=center>
+<tr><td><label>Parameter</label></td><td><label>Value</label></td><td><label>Units</label></td></tr>
+<tr><td><label>Mass</label></td><td><input type=number step="any" name=mass></td><td><select name="m_unit" id="m_unit">
+  <option value="kg">kg</option>
+  <option value="g">g</option>
+  <option value="lb">lb</option>
+</select></td></tr>
+<tr><td><label>Spring rate (Stiffness) [k]</label></td><td><input type=number step="any" name=k></td><td><select name="k_unit" id="k_unit">
+  <option value="N/m">N/m</option>
+  <option value="N/mm">N/mm</option>
+  <option value="lbf/in">lbf/in</option>
+</select></td></tr>
+<tr><td><label>Damping ratio (coefficient) [ζ]</label></td><td><input type=number step="any" name=DR></td><td><label>---</label></td></tr>
+<tr><td><label>Free-Forced vibration</label></td><td>
+  <input type="radio" id="free" name="free/forced" value="free" checked="checked">
+  <label for="free">Free</label><br>
+  <input type="radio" id="forced" name="free/forced" value="forced">
+  <label for="forced">Forced</label></td></tr>
+<tr><td><label>Harmonic input frequency [Ω]</label></td><td><input type=text name=omega></td><td><label>Hz</label></td></tr>
+<tr><td><input type=Submit name=Submit value=Submit></td><td><div align=center>
+<br>
+</td></tr>
+</table>
+</form>
+<br>
+<h3 align=center>Results</h3>
+<table border=1 align=center>
+<tr><td><label>Parameter</label></td><td><label>Value</label></td><td><label>Units</label></td></tr>
+<tr><td><label>Cicular frequency [wn]</label></td><td><label>{{prediction_text.Wn}}</label></td><td><label>rad/s</label></td></tr>
+<tr><td><label>Natural frequency [fn]</label></td><td><label>{{prediction_text.Fn}}</label></td><td><label>Hz</label></td></tr>
+<tr><td><label>Period of oscilattion [T]</label></td><td><label>{{prediction_text.T}}</label></td><td><label>s</label></td></tr>
+<tr><td><label>Critical damping [cc]</label></td><td><label>{{prediction_text.Cc}}</label></td><td><label>---</label></td></tr>
+<tr><td><label>Damping factor [c]</label></td><td><label>{{prediction_text.C}}</label></td><td><label>---</label></td></tr>
+<tr><td><label>Damped natural angular frequency [wd]</label></td><td><label>{{prediction_text.Wd}}</label></td><td><label>rad/s</label></td></tr>
+<tr><td><label>Damped natural frequency [fd]</label></td><td><label>{{prediction_text.Fd}}</label></td><td><label>Hz</label></td></tr>
+<tr><td><label>Quality factor [Q]</label></td><td><label>{{prediction_text.Q}}</label></td><td><label>---</label></td></tr>
+<tr><td><label>Transmissiblity [TR]</label></td><td><label>{{prediction_text.TR}}</label></td><td><label>---</label></td></tr>
+</table>
+<br>
+<br>
+<img src={{prediction_text.image}} alt="Not required" >
+
+</div>
+<style>
+        body {
+            background-color: lightblue;
+            text-align: center;
+            padding: 0px;
+        }
+</style>
+</body>
+</html>
